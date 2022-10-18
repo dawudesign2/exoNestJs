@@ -8,14 +8,14 @@ import {
   Controller,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
-import { UserEntity } from '../entities/user.entity';
+import { User } from '../entities/user.entity';
 
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Get(':id')
-  get(@Param('id') id: number): Promise<UserEntity> {
+  get(@Param('id') id: number): Promise<User> {
     return this.userService.getUserById(id);
   }
 
@@ -25,12 +25,12 @@ export class UserController {
   }
 
   @Post()
-  create(@Body() user: UserEntity) {
+  create(@Body() user: User) {
     return this.userService.saveUser(user);
   }
 
   @Put()
-  update(@Body() user: UserEntity) {
+  update(@Body() user: User) {
     return this.userService.saveUser(user);
   }
 
