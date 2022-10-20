@@ -7,7 +7,7 @@ import { User } from '../entities/user.entity';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
   getUsers(): Promise<User[]> {
@@ -16,6 +16,10 @@ export class UserService {
 
   getUserById(id: number): Promise<User> {
     return this.userRepository.findOneBy({ id });
+  }
+
+  getUserByEmail(email: string): Promise<User> | undefined {
+    return this.userRepository.findOneBy({ email });
   }
 
   saveUser(user: User): Promise<User> {
